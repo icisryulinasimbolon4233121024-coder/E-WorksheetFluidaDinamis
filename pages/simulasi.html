@@ -3,59 +3,131 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simulasi - E-Worksheet Fluida Dinamis</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <title>Simulasi & Rekam - E-Worksheet Fluida Dinamis</title>
+    <!-- <link rel="stylesheet" href="../css/style.css" /> Jika Anda punya CSS eksternal -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <style>
+        /* TAMBAHAN CSS UNTUK PANEL REKAMAN & WEBCAM AGAR RAPI DAN BAGUS */
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #334155; margin: 0; padding: 0;}
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Panel Rekaman */
+        .record-panel {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 5px solid #ef4444;
+        }
+        .record-info h3 { margin: 0 0 5px 0; color: #1e293b; }
+        .record-info p { margin: 0; font-size: 0.9rem; color: #64748b; }
+        .record-actions button, .record-actions a {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        #btn-start { background: #ef4444; color: white; }
+        #btn-start:hover { background: #dc2626; }
+        #btn-stop { background: #64748b; color: white; display: none; }
+        #btn-stop:hover { background: #475569; }
+        #btn-download { background: #10b981; color: white; display: none; }
+        #btn-download:hover { background: #059669; }
+        
+        /* Webcam Mengambang (Floating) */
+        .webcam-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
+            height: 180px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            border: 3px solid #fff;
+            z-index: 9999;
+            display: none; /* Disembunyikan sampai rekaman dimulai */
+        }
+        .webcam-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1); /* Efek Cermin (Mirror) */
+        }
+        .recording-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+    </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
-        <div class="container">
+    <!-- NAVBAR (Disederhanakan untuk preview) -->
+    <nav class="navbar" style="background: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <div class="nav-brand">
-                <a href="../index.html">
-                    <i class="fas fa-flask"></i>
-                    <span>E-Worksheet</span>
+                <a href="#" style="text-decoration: none; color: #2563eb; font-weight: 700; font-size: 1.2rem;">
+                    <i class="fas fa-flask"></i> <span>E-Worksheet</span>
                 </a>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html"><i class="fas fa-home"></i> Beranda</a></li>
-                <li><a href="materi.html"><i class="fas fa-book"></i> Materi</a></li>
-                <li><a href="simulasi.html" class="active"><i class="fas fa-play-circle"></i> Simulasi</a></li>
-                <li><a href="thinkaloud.html"><i class="fas fa-video"></i> Think-Aloud</a></li>
-                <li><a href="refleksi.html"><i class="fas fa-pen-fancy"></i> Refleksi</a></li>
-                <li><a href="kuis.html"><i class="fas fa-question-circle"></i> Kuis</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- ===== PAGE HEADER ===== -->
-    <section class="page-header">
+    <!-- PAGE HEADER -->
+    <section class="page-header" style="text-align: center; padding: 40px 0; background: #e0f2fe;">
         <div class="container">
-            <h1>🎮 Simulasi PhET</h1>
-            <p>Eksplorasi konsep Fluida Dinamis secara interaktif dengan simulasi "Fluid Pressure and Flow"</p>
+            <h1 style="color: #0369a1; margin-bottom: 10px;">🎮 Simulasi & Think-Aloud</h1>
+            <p style="color: #0284c7; margin: 0;">Eksplorasi konsep Fluida Dinamis dan rekam proses belajar kalian</p>
         </div>
     </section>
 
-    <!-- ===== SIMULASI ===== -->
-    <section class="page-content">
+    <!-- KONTEN UTAMA -->
+    <section class="page-content" style="padding: 40px 0;">
         <div class="container">
-            <div class="simulasi-container">
+            
+            <!-- ===== FITUR REKAMAN (THINK-ALOUD) ===== -->
+            <div class="record-panel">
+                <div class="record-info">
+                    <h3><i class="fas fa-video"></i> Panel Think-Aloud</h3>
+                    <p>Klik "Mulai Rekam" untuk merekam layar simulasi, suara Anda, dan wajah Anda.</p>
+                </div>
+                <div class="record-actions">
+                    <button id="btn-start"><i class="fas fa-record-vinyl"></i> Mulai Rekam</button>
+                    <button id="btn-stop"><i class="fas fa-stop-circle"></i> Akhiri Rekaman</button>
+                    <a id="btn-download" download="Hasil_ThinkAloud_Fluida.webm"><i class="fas fa-download"></i> Unduh Hasil</a>
+                </div>
+            </div>
 
+            <div class="simulasi-container">
                 <!-- ========================================= -->
-                <!-- PHET IFRAME - SUDAH DIPERBAIKI           -->
+                <!-- PHET IFRAME -->
                 <!-- ========================================= -->
-                <div style="position:relative; width:100%; height:550px; background:#f0f4f8; border-radius:16px; overflow:hidden; border:2px solid #e2e8f0;">
+                <div style="position:relative; width:100%; height:600px; background:#f0f4f8; border-radius:16px; overflow:hidden; border:2px solid #e2e8f0; margin-bottom: 20px;">
                     <iframe
                         src="https://phet.colorado.edu/sims/html/fluid-pressure-and-flow/latest/fluid-pressure-and-flow_id.html"
                         width="100%"
-                        height="550"
+                        height="100%"
                         style="border:none; display:block;"
                         allowfullscreen
                         loading="lazy">
@@ -63,70 +135,127 @@
                 </div>
 
                 <!-- ===== PANDUAN ===== -->
-                <div class="simulasi-guide">
-                    <h3>📖 Panduan Eksplorasi</h3>
-                    <ol>
-                        <li>Buka simulasi PhET di atas (klik tombol <strong>"Play"</strong> jika diperlukan).</li>
-                        <li>Pada tab <strong>"Aliran" (Flow)</strong>, perhatikan pipa dengan luas penampang yang berbeda.</li>
-                        <li>Ubah kecepatan aliran menggunakan slider yang tersedia.</li>
-                        <li>Perhatikan perubahan kecepatan dan tekanan pada setiap bagian pipa.</li>
-                        <li>Catat pengamatan kalian di jurnal refleksi.</li>
+                <div class="simulasi-guide" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="margin-top: 0;">📖 Panduan Tugas Think-Aloud</h3>
+                    <ol style="color: #475569;">
+                        <li>Klik tombol <strong>Mulai Rekam</strong> di atas.</li>
+                        <li>Saat muncul pop-up browser, pilih bagian <strong>Tab Chrome Ini (This Tab)</strong> agar simulasi terekam dengan baik.</li>
+                        <li>Mulai jalankan simulasi. Sambil mencoba, <strong>ucapkan dengan lantang (Think-Aloud)</strong> apa yang kalian pikirkan, apa yang kalian ubah, dan apa hasilnya.</li>
+                        <li>Amati hubungan antara luas penampang, kecepatan aliran, dan tekanan.</li>
+                        <li>Klik <strong>Akhiri Rekaman</strong> jika sudah selesai, lalu <strong>Unduh Hasil</strong> videonya untuk dikumpulkan ke guru.</li>
                     </ol>
-                    <div class="task">
-                        <strong>🔬 Tugas Eksplorasi:</strong>
-                        <p style="margin-top:8px;">Amati hubungan antara luas penampang, kecepatan aliran, dan tekanan pada pipa. Catat setidaknya 3 pengamatan penting!</p>
-                    </div>
                 </div>
-
-                <!-- ===== FALLBACK JIKA IFRAME GAGAL ===== -->
-                <div style="margin-top:20px; padding:16px 20px; background:#fff3cd; border-radius:12px; border-left:4px solid #f59e0b;">
-                    <p style="color:#856404; margin:0; font-size:0.95rem;">
-                        <strong>💡 Jika simulasi tidak muncul:</strong>
-                        <a href="https://phet.colorado.edu/sims/html/fluid-pressure-and-flow/latest/fluid-pressure-and-flow_id.html" 
-                           target="_blank" 
-                           style="color:#2563eb; font-weight:600; text-decoration:underline;">
-                           Klik di sini untuk membuka simulasi di tab baru
-                        </a>
-                    </p>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <i class="fas fa-flask"></i>
-                    <span>E-Worksheet Fluida Dinamis</span>
-                    <p>E-Worksheet berbasis Deep Learning terintegrasi Simulasi PhET dengan Metode Think-Aloud</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Navigasi</h4>
-                    <ul>
-                        <li><a href="../index.html">Beranda</a></li>
-                        <li><a href="materi.html">Materi</a></li>
-                        <li><a href="simulasi.html">Simulasi</a></li>
-                        <li><a href="thinkaloud.html">Think-Aloud</a></li>
-                        <li><a href="refleksi.html">Refleksi</a></li>
-                        <li><a href="kuis.html">Kuis</a></li>
-                    </ul>
-                </div>
-                <div class="footer-info">
-                    <h4>Informasi</h4>
-                    <p><i class="fas fa-user-graduate"></i> Kelas XI IPA</p>
-                    <p><i class="fas fa-school"></i> SMA Negeri 6 Medan</p>
-                    <p><i class="fas fa-calendar"></i> Semester Ganjil 2026/2027</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 E-Worksheet Fluida Dinamis. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- ===== WEBCAM MENGAMBANG (FLOATING) ===== -->
+    <div class="webcam-container" id="webcam-container">
+        <div class="recording-indicator">REC</div>
+        <video id="webcam" autoplay muted playsinline></video>
+    </div>
 
-    <script src="../js/script.js"></script>
+    <!-- SCRIPT JAVASCRIPT UNTUK REKAM LAYAR, SUARA & WEBCAM -->
+    <script>
+        const btnStart = document.getElementById('btn-start');
+        const btnStop = document.getElementById('btn-stop');
+        const btnDownload = document.getElementById('btn-download');
+        const webcamContainer = document.getElementById('webcam-container');
+        const webcamVideo = document.getElementById('webcam');
+        
+        let mediaRecorder;
+        let recordedChunks = [];
+        let screenStream;
+        let cameraStream;
+
+        btnStart.addEventListener('click', async () => {
+            try {
+                recordedChunks = [];
+                
+                // 1. Meminta Izin Kamera dan Mikrofon (Wajah & Suara)
+                cameraStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: true, 
+                    audio: true 
+                });
+                
+                // Tampilkan kamera di sudut kanan bawah
+                webcamVideo.srcObject = cameraStream;
+                webcamContainer.style.display = 'block';
+
+                // 2. Meminta Izin Perekaman Layar
+                screenStream = await navigator.mediaDevices.getDisplayMedia({ 
+                    video: { cursor: "always" },
+                    audio: false // audio sudah dari mic
+                });
+
+                // 3. Gabungkan Video Layar dan Audio dari Mikrofon
+                const tracks = [
+                    ...screenStream.getVideoTracks(),
+                    ...cameraStream.getAudioTracks()
+                ];
+                const combinedStream = new MediaStream(tracks);
+
+                // 4. Setup MediaRecorder
+                mediaRecorder = new MediaRecorder(combinedStream, { mimeType: 'video/webm' });
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    // Buat file video yang bisa didownload
+                    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    btnDownload.href = url;
+                    
+                    // Update UI Tombol
+                    btnDownload.style.display = 'inline-block';
+                    btnStop.style.display = 'none';
+                    btnStart.style.display = 'inline-block';
+                    btnStart.innerText = "Rekam Ulang";
+
+                    // Hentikan semua stream (Kamera & Layar)
+                    stopAllStreams();
+                };
+
+                // Jika pengguna menghentikan share screen langsung dari browser
+                screenStream.getVideoTracks()[0].onended = () => {
+                    if(mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+                };
+
+                // Mulai Merekam
+                mediaRecorder.start();
+                
+                // Update UI Tombol
+                btnStart.style.display = 'none';
+                btnStop.style.display = 'inline-block';
+                btnDownload.style.display = 'none';
+
+            } catch (err) {
+                console.error("Gagal memulai rekaman:", err);
+                alert("Gagal merekam. Pastikan Anda memberikan izin akses Kamera, Mikrofon, dan Layar.\n\nCatatan: Fitur ini wajib dijalankan di server (localhost/HTTPS) agar browser mengizinkan akses kamera.");
+                stopAllStreams();
+            }
+        });
+
+        btnStop.addEventListener('click', () => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+        });
+
+        // Fungsi untuk mematikan kamera dan layar setelah selesai
+        function stopAllStreams() {
+            if (screenStream) {
+                screenStream.getTracks().forEach(track => track.stop());
+            }
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+            }
+            webcamContainer.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
