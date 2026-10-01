@@ -1,128 +1,244 @@
-/* --- WARNA DASAR (Sesuaikan jika sudah ada) --- */
-:root {
-    --primary: #2563eb;       /* Biru modern */
-    --primary-dark: #1d4ed8;
-    --secondary: #f3f4f6;
-    --accent: #f59e0b;        /* Kuning/Orange aksen */
-    --text-main: #1f2937;
-    --text-muted: #4b5563;
-    --bg-light: #f8fafc;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="E-Worksheet Interaktif Fluida Dinamis berbasis Deep Learning dan Simulasi PhET" />
+    <title>Beranda - E-Worksheet Fluida Dinamis</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 
-/* --- HERO SECTION STYLING --- */
-.hero {
-    position: relative;
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    padding: 120px 0 160px;
-    overflow: hidden;
-}
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <div class="icon-bg"><i class="fas fa-flask"></i></div>
+                    <span>E-Worksheet</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="pages/materi.html"><i class="fas fa-book"></i> Materi</a></li>
+                <li><a href="pages/simulasi.html"><i class="fas fa-play-circle"></i> Simulasi</a></li>
+                <li><a href="pages/thinkaloud.html"><i class="fas fa-video"></i> Think-Aloud</a></li>
+                <li><a href="pages/refleksi.html"><i class="fas fa-pen-fancy"></i> Refleksi</a></li>
+                <li><a href="pages/kuis.html"><i class="fas fa-question-circle"></i> Kuis</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-.hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-}
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span class="badge"><i class="fas fa-star"></i> Media Pembelajaran Interaktif</span>
+                        <h1>Eksplorasi Konsep <br><span class="highlight">Fluida Dinamis</span></h1>
+                        <p class="subtitle">Belajar Fisika kini lebih mudah dan menyenangkan. Pahami konsep Debit, Persamaan Kontinuitas, dan Hukum Bernoulli melalui simulasi interaktif dan metode <em>Think-Aloud</em>.</p>
+                        
+                        <div class="hero-buttons">
+                            <a href="pages/materi.html" class="btn btn-primary btn-lg shadow-hover">
+                                <i class="fas fa-rocket"></i> Mulai Belajar
+                            </a>
+                            <a href="#features" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-compass"></i> Pelajari Fitur
+                            </a>
+                        </div>
+                        
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-number">3</span>
+                                    <span class="stat-label">Materi Pokok</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-icon"><i class="fas fa-laptop-code"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-number">1</span>
+                                    <span class="stat-label">Simulasi PhET</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-icon"><i class="fas fa-tasks"></i></div>
+                                <div class="stat-info">
+                                    <span class="stat-number">20</span>
+                                    <span class="stat-label">Soal Evaluasi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <div class="hero-visual floating-anim">
+                            <div class="glass-card">
+                                <i class="fas fa-water fa-4x" style="color: var(--primary);"></i>
+                                <h3>Fluida Dinamis</h3>
+                                <p>Fisika Kelas XI</p>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <!-- Elemen dekoratif background -->
+                            <div class="blob-shape blob-1"></div>
+                            <div class="blob-shape blob-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wave Shape Divider Bergelombang -->
+            <div class="custom-shape-divider-bottom">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.98,131,201.33,122.94,242.42,118.25,282.72,103.55,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
 
-.hero-text { flex: 1; }
-.hero-text h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: var(--text-main);
-}
-.hero-text .highlight { color: var(--primary); }
+        <!-- ===== FITUR ===== -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="sub-heading">Kelebihan Modul</span>
+                    <h2>Fitur Unggulan E-Worksheet</h2>
+                    <p>Sistem pembelajaran yang dirancang khusus untuk meningkatkan pemahaman konseptual dan analitis</p>
+                    <div class="heading-line"></div>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card hover-lift">
+                        <div class="feature-icon icon-blue">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Deep Learning</h3>
+                        <p>Pendekatan <em>Joyful, Mindful, & Meaningful</em> untuk membangun pemahaman konsep yang mendalam dan permanen.</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <div class="feature-icon icon-green">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3>Simulasi PhET</h3>
+                        <p>Eksplorasi virtual tekanan dan aliran fluida secara interaktif. Ubah variabel dan amati hasilnya secara <em>real-time</em>.</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <div class="feature-icon icon-orange">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Think-Aloud</h3>
+                        <p>Latih kemampuan komunikasi sainsmu dengan merekam layar dan suara saat memecahkan masalah fisika.</p>
+                    </div>
+                    <div class="feature-card hover-lift">
+                        <div class="feature-icon icon-red">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <h3>Jurnal Refleksi</h3>
+                        <p>Evaluasi tingkat pemahaman dan kesadaran metakognitifmu melalui lembar refleksi yang terstruktur.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-.badge {
-    display: inline-block;
-    background: rgba(37, 99, 235, 0.1);
-    color: var(--primary);
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-}
+        <!-- ===== MATERI PREVIEW ===== -->
+        <section class="materi-preview bg-light">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="sub-heading">Materi Pembelajaran</span>
+                    <h2>Apa yang akan kamu pelajari?</h2>
+                    <p>Pahami tiga pilar utama dalam bab Fluida Dinamis kelas XI</p>
+                    <div class="heading-line"></div>
+                </div>
+                <div class="materi-grid">
+                    <div class="materi-card shadow-sm">
+                        <div class="materi-number">01</div>
+                        <div class="materi-content">
+                            <h3>Debit Aliran</h3>
+                            <p>Menganalisis besaran volume fluida yang mengalir melalui suatu penampang per satuan waktu. <strong>(Q = A.v)</strong></p>
+                            <a href="pages/materi.html#debit" class="materi-link">Pelajari Modul <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="materi-card shadow-sm">
+                        <div class="materi-number">02</div>
+                        <div class="materi-content">
+                            <h3>Asas Kontinuitas</h3>
+                            <p>Memahami fenomena perubahan kecepatan fluida saat melewati pipa dengan luas penampang berbeda. <strong>(A₁v₁ = A₂v₂)</strong></p>
+                            <a href="pages/materi.html#kontinuitas" class="materi-link">Pelajari Modul <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="materi-card shadow-sm">
+                        <div class="materi-number">03</div>
+                        <div class="materi-content">
+                            <h3>Hukum Bernoulli</h3>
+                            <p>Mengeksplorasi hubungan energi kinetik, potensial, dan tekanan fluida beserta penerapannya di kehidupan nyata.</p>
+                            <a href="pages/materi.html#bernoulli" class="materi-link">Pelajari Modul <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-/* --- HERO STATS --- */
-.hero-stats {
-    display: flex;
-    gap: 30px;
-    margin-top: 40px;
-}
-.stat {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.stat-icon {
-    width: 45px; height: 45px;
-    background: white;
-    border-radius: 12px;
-    display: flex; justify-content: center; align-items: center;
-    color: var(--primary);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-.stat-info { display: flex; flex-direction: column; }
-.stat-number { font-size: 1.5rem; font-weight: 700; color: var(--text-main); line-height: 1;}
-.stat-label { font-size: 0.85rem; color: var(--text-muted); }
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-flask"></i>
+                        <span>E-Worksheet</span>
+                    </div>
+                    <p>E-Worksheet Fisika berbasis <em>Deep Learning</em> terintegrasi Simulasi PhET dengan Metode <em>Think-Aloud</em> untuk SMA Kelas XI.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Github"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigasi Cepat</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="pages/materi.html"><i class="fas fa-chevron-right"></i> Materi</a></li>
+                        <li><a href="pages/simulasi.html"><i class="fas fa-chevron-right"></i> Simulasi</a></li>
+                        <li><a href="pages/thinkaloud.html"><i class="fas fa-chevron-right"></i> Think-Aloud</a></li>
+                        <li><a href="pages/refleksi.html"><i class="fas fa-chevron-right"></i> Refleksi</a></li>
+                        <li><a href="pages/kuis.html"><i class="fas fa-chevron-right"></i> Kuis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-info">
+                    <h4>Informasi Modul</h4>
+                    <ul class="info-list">
+                        <li><i class="fas fa-user-graduate"></i> Kelas XI IPA</li>
+                        <li><i class="fas fa-school"></i> SMA Negeri 6 Medan</li>
+                        <li><i class="fas fa-calendar-alt"></i> Semester Ganjil 2026/2027</li>
+                        <li><i class="fas fa-envelope"></i> info@eworksheet.edu</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 E-Worksheet Fluida Dinamis. Dikembangkan untuk keperluan edukasi.</p>
+            </div>
+        </div>
+    </footer>
 
-/* --- HERO VISUAL (GLASSMORPHISM) --- */
-.hero-image { position: relative; flex: 1; display: flex; justify-content: center; }
-.glass-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 40px;
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    z-index: 2;
-    width: 300px;
-}
-.glass-card h3 { margin: 20px 0 5px; font-size: 1.5rem; }
-.progress-bar {
-    width: 100%; height: 8px; background: #e2e8f0;
-    border-radius: 10px; margin-top: 20px; overflow: hidden;
-}
-.progress-bar .progress { height: 100%; background: var(--primary); border-radius: 10px;}
-
-/* Animasi Mengambang */
-.floating-anim { animation: float 6s ease-in-out infinite; }
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
-}
-
-/* --- WAVE DIVIDER BWH HERO --- */
-.custom-shape-divider-bottom {
-    position: absolute; bottom: 0; left: 0; width: 100%;
-    overflow: hidden; line-height: 0; transform: rotate(180deg);
-}
-.custom-shape-divider-bottom svg {
-    position: relative; display: block; width: calc(130% + 1.3px); height: 90px;
-}
-.custom-shape-divider-bottom .shape-fill { fill: #ffffff; }
-
-/* --- UTILITIES & SECTION HEADER --- */
-.text-center { text-align: center; }
-.bg-light { background-color: var(--bg-light); padding: 80px 0;}
-.sub-heading { color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
-.heading-line { width: 60px; height: 4px; background: var(--primary); margin: 20px auto; border-radius: 2px;}
-
-/* --- ICONS WARNA WARNI --- */
-.icon-blue { background: #e0f2fe; color: #0284c7; }
-.icon-green { background: #dcfce7; color: #16a34a; }
-.icon-orange { background: #ffedd5; color: #ea580c; }
-.icon-red { background: #fee2e2; color: #dc2626; }
-.feature-icon {
-    width: 60px; height: 60px; border-radius: 16px;
-    display: flex; justify-content: center; align-items: center;
-    font-size: 1.5rem; margin-bottom: 20px;
-}
-
-/* --- KARTU HOVER EFFECT --- */
-.hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #f3f4f6; }
-.hover-lift:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+    <script src="js/script.js"></script>
+</body>
+</html>
