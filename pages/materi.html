@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Modul Pembelajaran Fluida Dinamis - E-Worksheet Interaktif Fisika SMA Kelas XI" />
     <title>Materi Lengkap - E-Worksheet Fluida Dinamis</title>
+
+    <!-- CSS Utama (paling penting, taruh paling atas) -->
     <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- MathJax untuk render rumus matematika -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']],
+                processEscapes: true
+            },
+            svg: { fontCache: 'global' },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -17,7 +40,7 @@
         <div class="container">
             <div class="nav-brand">
                 <a href="../index.html">
-                    <i class="fas fa-flask"></i>
+                    <div class="icon-bg"><i class="fas fa-flask"></i></div>
                     <span>E-Worksheet</span>
                 </a>
             </div>
@@ -29,11 +52,11 @@
                 <li><a href="refleksi.html"><i class="fas fa-pen-fancy"></i> Refleksi</a></li>
                 <li><a href="kuis.html"><i class="fas fa-question-circle"></i> Kuis</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -51,11 +74,11 @@
 
             <!-- ===== PENDAHULUAN & FLUIDA IDEAL ===== -->
             <div class="materi-section" id="pendahuluan">
-                <h2>1. Konsep Dasar & Karakteristik Fluida Ideal</h2>
+                <h2>1. Konsep Dasar &amp; Karakteristik Fluida Ideal</h2>
                 <p>Fluida dinamis mempelajari perilaku fluida (zat cair dan gas) saat bergerak/mengalir. Untuk mempermudah pemodelan matematis, fluida yang dianalisis pada tingkat dasar diasumsikan sebagai <strong>Fluida Ideal</strong>.</p>
-                
+
                 <div style="background:#f8f9fa; border-left:4px solid var(--primary); padding:15px; margin:15px 0; border-radius:4px;">
-                    <h4> Karakteristik Fluida Ideal:</h4>
+                    <h4>Karakteristik Fluida Ideal:</h4>
                     <ul>
                         <li><strong>Non-viskos (Tak Kental):</strong> Tidak ada gesekan internal antar lapisan fluida maupun dinding pipa (\(\eta = 0\)).</li>
                         <li><strong>Inkompresibel (Tak Termampatkan):</strong> Massa jenis fluida (\(\rho\)) bernilai konstan, tidak berubah akibat perbedaan tekanan.</li>
@@ -81,18 +104,18 @@
                     \(v\) = Kecepatan aliran fluida (\(\text{m}/\text{s}\))</span>
                 </div>
 
-                <h3>Aplikasi Nyata & Studi Kasus</h3>
+                <h3>Aplikasi Nyata &amp; Studi Kasus</h3>
                 <div class="aplikasi">
                     <strong>💧 Sistem Distribusi Air Bersih (PDAM):</strong> Menghitung kapasitas pompa untuk memastikan suplai volume air per detik mencukupi kebutuhan pemukiman.
                 </div>
                 <div class="aplikasi">
-                    <strong>🌊 Debit Sungai & Bendungan:</strong> Mengukur laju air untuk memprediksi potensi banjir dan mengatur pintu air bendungan.
+                    <strong>🌊 Debit Sungai &amp; Bendungan:</strong> Mengukur laju air untuk memprediksi potensi banjir dan mengatur pintu air bendungan.
                 </div>
                 <div class="aplikasi">
                     <strong>🏥 Sistem Infus Medis:</strong> Pengaturan laju tetes infus mengandalkan perhitungan debit agar dosis obat yang masuk ke pembuluh darah stabil per menit.
                 </div>
 
-                <h3>Contoh Soal & Pembahasan</h3>
+                <h3>Contoh Soal &amp; Pembahasan</h3>
                 <div style="background:#eef7ee; padding:20px; border-radius:10px; margin-top:15px; border:1px solid #c8e6c9;">
                     <p><strong>Soal:</strong> Sebuah tangki berkapasitas \(1{,}2\text{ m}^3\) diisi air melalui pipa berdiameter \(4\text{ cm}\). Jika air keluar dari pipa dengan kecepatan \(2\text{ m/s}\), berapa lama waktu yang dibutuhkan hingga tangki penuh?</p>
                     <p><strong>Penyelesaian:</strong></p>
@@ -103,7 +126,7 @@
                         <li>Hitung debit (\(Q\)):<br>
                             \(Q = A \cdot v = (1{,}256 \times 10^{-3}) \times 2 = 2{,}512 \times 10^{-3}\text{ m}^3/\text{s}\)</li>
                         <li>Hitung waktu (\(t\)):<br>
-                            \(t = \frac{V}{Q} = \frac{1{,}2}{2{,}512 \times 10^{-3}} \approx \mathbf{477{,}7\text{ detik}}\text{ (sekitar } 7{,}96\text{ menit)}\)</li>
+                            \(t = \frac{V}{Q} = \frac{1{,}2}{2{,}512 \times 10^{-3}} \approx \mathbf{477{,}7\text{ detik}}\text{ (sekitar }7{,}96\text{ menit)}\)</li>
                     </ol>
                 </div>
             </div>
@@ -123,22 +146,22 @@
 
                 <h3>Fenomena Fisika dalam Life Context</h3>
                 <div class="aplikasi">
-                    <strong>🚿 Ujung Selang Penyiraman:</strong> Ketika ujung selang ditekan (\(A_2 < A_1\)), kecepatan semprotan air bertambah (\(v_2 > v_1\)).
+                    <strong>🚿 Ujung Selang Penyiraman:</strong> Ketika ujung selang ditekan (\(A_2 &lt; A_1\)), kecepatan semprotan air bertambah (\(v_2 &gt; v_1\)).
                 </div>
                 <div class="aplikasi">
                     <strong>🫀 Pembuluh Darah Manusia:</strong> Penyempitan pembuluh darah kapiler atau lumen akibat plak (aterosklerosis) memaksa darah mengalir lebih cepat pada area lokal tersebut, meningkatkan beban kerja jantung.
                 </div>
 
-                <h3>Contoh Soal & Pembahasan</h3>
+                <h3>Contoh Soal &amp; Pembahasan</h3>
                 <div style="background:#eef7ee; padding:20px; border-radius:10px; margin-top:15px; border:1px solid #c8e6c9;">
                     <p><strong>Soal:</strong> Air mengalir dalam pipa horizontal berdiameter \(6\text{ cm}\) dengan laju \(3\text{ m/s}\). Pipa tersebut menyempit hingga diameternya menjadi \(2\text{ cm}\). Hitunglah kecepatan air pada bagian pipa yang sempit!</p>
                     <p><strong>Penyelesaian:</strong></p>
                     <p>\(d_1 = 6\text{ cm}, v_1 = 3\text{ m/s}, d_2 = 2\text{ cm}\)</p>
                     $$\begin{aligned}
-                    d_1^2 \cdot v_1 &= d_2^2 \cdot v_2 \\
-                    (6)^2 \times 3 &= (2)^2 \times v_2 \\
-                    36 \times 3 &= 4 \times v_2 \\
-                    108 &= 4 v_2 \implies v_2 = \mathbf{27\text{ m/s}}
+                    d_1^2 \cdot v_1 &amp;= d_2^2 \cdot v_2 \\
+                    (6)^2 \times 3 &amp;= (2)^2 \times v_2 \\
+                    36 \times 3 &amp;= 4 \times v_2 \\
+                    108 &amp;= 4 v_2 \implies v_2 = \mathbf{27\text{ m/s}}
                     \end{aligned}$$
                 </div>
             </div>
@@ -161,10 +184,10 @@
                 </div>
 
                 <h3>Aplikasi Utama Hukum Bernoulli</h3>
-                
+
                 <div class="aplikasi">
                     <strong>✈️ Gaya Angkat Sayap Pesawat Terbang (Aerofoil):</strong>
-                    <p>Bentuk sayap melengkung di atas memaksa udara mengalir lebih cepat di bagian atas (\(v_{\text{atas}} > v_{\text{bawah}}\)), sehingga tekanan di atas menjadi lebih kecil (\(P_{\text{atas}} < P_{\text{bawah}}\)). Perbedaan tekanan ini menghasilkan gaya angkat ke atas:</p>
+                    <p>Bentuk sayap melengkung di atas memaksa udara mengalir lebih cepat di bagian atas (\(v_{\text{atas}} &gt; v_{\text{bawah}}\)), sehingga tekanan di atas menjadi lebih kecil (\(P_{\text{atas}} &lt; P_{\text{bawah}}\)). Perbedaan tekanan ini menghasilkan gaya angkat ke atas:</p>
                     $$F_1 - F_2 = \frac{1}{2} \rho A (v_1^2 - v_2^2)$$
                 </div>
 
@@ -184,21 +207,21 @@
                 </div>
 
                 <div class="aplikasi">
-                    <strong>💨 Tabung Pitot & Alat Semprot Parfum/Nyamuk:</strong>
+                    <strong>💨 Tabung Pitot &amp; Alat Semprot Parfum/Nyamuk:</strong>
                     <p>Tabung Pitot mengukur kecepatan aliran gas/udara pada pesawat. Alat semprot menggunakan laju udara tinggi untuk menurunkan tekanan udara di ujung sedotan sehingga cairan terhisap naik dan tersembur halus.</p>
                 </div>
 
-                <h3>Contoh Soal & Pembahasan</h3>
+                <h3>Contoh Soal &amp; Pembahasan</h3>
                 <div style="background:#eef7ee; padding:20px; border-radius:10px; margin-top:15px; border:1px solid #c8e6c9;">
                     <p><strong>Soal:</strong> Air (\(\rho = 1000\text{ kg/m}^3\)) mengalir melalui pipa horizontal. Pada penampang besar, kecepatannya \(2\text{ m/s}\) dan tekanannya \(2 \times 10^5\text{ Pa}\). Jika di penampang kecil kecepatannya naik menjadi \(6\text{ m/s}\), hitunglah tekanan pada penampang kecil tersebut!</p>
                     <p><strong>Penyelesaian:</strong></p>
                     <p>Karena pipa horizontal, ketinggian sama (\(h_1 = h_2\)):</p>
                     $$\begin{aligned}
-                    P_1 + \frac{1}{2}\rho v_1^2 &= P_2 + \frac{1}{2}\rho v_2^2 \\
-                    (2 \times 10^5) + \frac{1}{2}(1000)(2)^2 &= P_2 + \frac{1}{2}(1000)(6)^2 \\
-                    200.000 + 2.000 &= P_2 + 18.000 \\
-                    202.000 &= P_2 + 18.000 \\
-                    P_2 &= 202.000 - 18.000 = \mathbf{184.000\text{ Pa (184 kPa)}}
+                    P_1 + \frac{1}{2}\rho v_1^2 &amp;= P_2 + \frac{1}{2}\rho v_2^2 \\
+                    (2 \times 10^5) + \frac{1}{2}(1000)(2)^2 &amp;= P_2 + \frac{1}{2}(1000)(6)^2 \\
+                    200.000 + 2.000 &amp;= P_2 + 18.000 \\
+                    202.000 &amp;= P_2 + 18.000 \\
+                    P_2 &amp;= 202.000 - 18.000 = \mathbf{184.000\text{ Pa (184 kPa)}}
                     \end{aligned}$$
                 </div>
             </div>
