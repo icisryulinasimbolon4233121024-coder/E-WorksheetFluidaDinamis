@@ -7,10 +7,10 @@
 
 /* --- WARNA DASAR --- */ 
 :root { 
-  --primary: #2563eb; /* Biru modern */ 
+  --primary: #2563eb; 
   --primary-dark: #1d4ed8; 
   --secondary: #f3f4f6; 
-  --accent: #f59e0b; /* Kuning/Orange aksen */ 
+  --accent: #f59e0b; 
   --text-main: #1f2937; 
   --text-muted: #4b5563; 
   --bg-light: #f8fafc; 
@@ -29,9 +29,9 @@
   align-items: center; 
   justify-content: space-between; 
   gap: 40px; 
-  max-width: 1200px; /* Tambahan: batasi lebar maksimal agar rapi */
-  margin: 0 auto;    /* Tambahan: posisikan di tengah */
-  padding: 0 20px;   /* Tambahan: jarak aman kiri-kanan */
+  max-width: 1200px; 
+  margin: 0 auto;    
+  padding: 0 20px;   
 } 
 
 .hero-text { 
@@ -228,7 +228,7 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
 }
 
-/* --- TAMBAHAN: MEDIA QUERY UNTUK RESPONSIVE (HP) --- */
+/* --- MEDIA QUERY UNTUK RESPONSIVE (HP) --- */
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
@@ -236,11 +236,11 @@
   }
   
   .hero-text h1 {
-    font-size: 2.5rem; /* Perkecil font di HP */
+    font-size: 2.5rem;
   }
   
   .hero-stats {
     justify-content: center;
-    flex-wrap: wrap; /* Agar stat tidak memanjang ke samping jika layar terlalu sempit */
+    flex-wrap: wrap; 
   }
 }
