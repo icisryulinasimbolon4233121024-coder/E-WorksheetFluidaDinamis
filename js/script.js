@@ -2,32 +2,40 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+// Pengaman: Hanya jalankan jika hamburger dan navMenu ada di halaman tersebut
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
-});
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
 
 // ===== NAVBAR SCROLL =====
 const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.12)';
-    } else {
-        navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.08)';
-    }
-});
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.12)';
+        } else {
+            navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.08)';
+        }
+    });
+}
 
 // ===== ACTIVE NAV LINK =====
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+// Perbaikan logic agar support di GitHub Pages walau URL berakhiran '/'
+let currentPage = window.location.pathname.split('/').pop();
+if (currentPage === '' || currentPage === undefined) currentPage = 'index.html';
+
 document.querySelectorAll('.nav-menu a').forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop();
+    const linkPage = link.getAttribute('href')?.split('/').pop();
     if (linkPage === currentPage) {
         link.classList.add('active');
     }
@@ -43,26 +51,34 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.feature-card, .materi-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.6s ease';
-    observer.observe(el);
-});
+// Pastikan elemen ditemukan sebelum diamati
+const animatedElements = document.querySelectorAll('.feature-card, .materi-card');
+if (animatedElements.length > 0) {
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
+}
 
 // ===== COUNTER ANIMATION =====
 const animateCounters = () => {
     document.querySelectorAll('.stat-number').forEach(stat => {
-        const target = parseInt(stat.textContent);
+        // Ambil teks asli (berjaga-jaga jika ada tanda '+' seperti '100+')
+        const originalText = stat.textContent;
+        const target = parseInt(originalText.replace(/[^0-9]/g, '')) || 0; 
+        const suffix = originalText.replace(/[0-9]/g, ''); // Simpan tanda tambah dll
+        
         let current = 0;
         const increment = target / 50;
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
-                stat.textContent = target;
+                stat.textContent = target + suffix;
                 clearInterval(timer);
             } else {
-                stat.textContent = Math.ceil(current);
+                stat.textContent = Math.ceil(current) + suffix;
             }
         }, 30);
     });
@@ -76,8 +92,11 @@ const heroObserver = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.5 });
+
 const heroSection = document.querySelector('.hero');
-if (heroSection) heroObserver.observe(heroSection);
+if (heroSection) {
+    heroObserver.observe(heroSection);
+}
 
 // ===== FORM REFLEKSI =====
 const refleksiForm = document.getElementById('refleksiForm');
@@ -113,4 +132,4 @@ if (kuisForm) {
     });
 }
 
-console.log('%c🚀 E-Worksheet Fluida Dinamis', 'font-size:20px; font-weight:bold; color:#1a237e;');
+console.log('%c🚀 E-Worksheet Fluida Dinamis Ready!', 'font-size:16px; font-weight:bold; color:#2563eb;');
