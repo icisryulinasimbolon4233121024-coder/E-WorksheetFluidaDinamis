@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Guru - E-Worksheet</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="dashboard-body">
+
+    <!-- Navbar Dashboard -->
+    <nav class="navbar dashboard-nav">
+        <div class="container d-flex justify-between align-center">
+            <div class="nav-brand">
+                <i class="fas fa-chalkboard-teacher" style="color: var(--primary); font-size: 1.5rem;"></i>
+                <span style="margin-left: 10px; font-weight: 600;">Dashboard Guru</span>
+            </div>
+            <div class="nav-user">
+                <span>Halo, Bpk/Ibu Guru</span>
+                <a href="../index.html" class="btn btn-danger btn-sm ml-3"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-content container mt-4">
+        
+        <!-- Statistik Cepat -->
+        <div class="hero-stats dashboard-stats mb-5">
+            <div class="stat shadow-sm bg-white">
+                <div class="stat-icon icon-blue"><i class="fas fa-users"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">36</span>
+                    <span class="stat-label">Total Siswa</span>
+                </div>
+            </div>
+            <div class="stat shadow-sm bg-white">
+                <div class="stat-icon icon-green"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">85.5</span>
+                    <span class="stat-label">Rata-rata Kuis</span>
+                </div>
+            </div>
+            <div class="stat shadow-sm bg-white">
+                <div class="stat-icon icon-orange"><i class="fas fa-video"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">32</span>
+                    <span class="stat-label">Video Terkumpul</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Rekap Nilai Kuis (10 Soal) -->
+        <section class="dashboard-section bg-white shadow-sm rounded p-4 mb-5">
+            <div class="section-header-dash d-flex justify-between align-center mb-4">
+                <h3><i class="fas fa-file-alt text-primary"></i> Rekap Nilai Kuis (10 Soal)</h3>
+                <button class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Export Excel</button>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Siswa</th>
+                            <th>Kelas</th>
+                            <th>Benar</th>
+                            <th>Nilai Akhir</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Ahmad Fauzan</td>
+                            <td>XI IPA 1</td>
+                            <td>9 / 10</td>
+                            <td><strong>90</strong></td>
+                            <td><span class="badge badge-success">Tuntas</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Budi Santoso</td>
+                            <td>XI IPA 1</td>
+                            <td>6 / 10</td>
+                            <td><strong>60</strong></td>
+                            <td><span class="badge badge-danger">Remedial</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Citra Kirana</td>
+                            <td>XI IPA 1</td>
+                            <td>10 / 10</td>
+                            <td><strong>100</strong></td>
+                            <td><span class="badge badge-success">Tuntas</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 2: Rekaman Think-Aloud Siswa -->
+        <section class="dashboard-section bg-white shadow-sm rounded p-4 mb-5">
+            <div class="section-header-dash mb-4">
+                <h3><i class="fas fa-video text-orange"></i> Rekaman Evaluasi Think-Aloud</h3>
+                <p class="text-muted text-sm">Review video penjelasan konsep fluida dinamis oleh siswa.</p>
+            </div>
+            
+            <div class="video-grid">
+                <!-- Video Card 1 -->
+                <div class="video-card border rounded p-3">
+                    <div class="video-thumbnail bg-light mb-2">
+                        <i class="fas fa-play-circle fa-3x text-muted"></i>
+                    </div>
+                    <h4 class="text-md">Ahmad Fauzan</h4>
+                    <p class="text-sm text-muted mb-2">Penjelasan Asas Bernoulli</p>
+                    <button class="btn btn-primary btn-sm btn-block"><i class="fas fa-eye"></i> Tonton Video</button>
+                </div>
+                <!-- Video Card 2 -->
+                <div class="video-card border rounded p-3">
+                    <div class="video-thumbnail bg-light mb-2">
+                        <i class="fas fa-play-circle fa-3x text-muted"></i>
+                    </div>
+                    <h4 class="text-md">Budi Santoso</h4>
+                    <p class="text-sm text-muted mb-2">Persamaan Kontinuitas</p>
+                    <button class="btn btn-primary btn-sm btn-block"><i class="fas fa-eye"></i> Tonton Video</button>
+                </div>
+                <!-- Video Card 3 -->
+                <div class="video-card border rounded p-3">
+                    <div class="video-thumbnail bg-light mb-2">
+                        <i class="fas fa-play-circle fa-3x text-muted"></i>
+                    </div>
+                    <h4 class="text-md">Citra Kirana</h4>
+                    <p class="text-sm text-muted mb-2">Penerapan Tabung Pitot</p>
+                    <button class="btn btn-primary btn-sm btn-block"><i class="fas fa-eye"></i> Tonton Video</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
