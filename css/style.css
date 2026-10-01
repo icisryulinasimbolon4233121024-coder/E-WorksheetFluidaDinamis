@@ -1,10 +1,35 @@
 /* =======================================================
-   1. CSS RESET & GLOBAL
+   PERBAIKAN: Import Font Poppins & Font Awesome
+   HARUS di paling atas sebelum apapun
+   ======================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+/* =======================================================
+   PERBAIKAN: Variables dipindah ke PALING ATAS
+   (sebelumnya ada di bawah body — ini penyebab utama error)
+   ======================================================= */
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #f3f4f6;
+  --accent: #f59e0b;
+  --text-main: #1f2937;
+  --text-muted: #4b5563;
+  --bg-light: #f8fafc;
+}
+
+/* =======================================================
+   CSS RESET & GLOBAL
    ======================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -14,25 +39,8 @@ body {
   line-height: 1.6;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* =======================================================
-   2. WARNA DASAR (VARIABLES)
-   ======================================================= */
-:root {
-  --primary: #2563eb;       /* Biru modern */
-  --primary-dark: #1d4ed8;
-  --secondary: #f3f4f6;
-  --accent: #f59e0b;        /* Kuning/Orange */
-  --text-main: #1f2937;
-  --text-muted: #4b5563;
-  --bg-light: #f8fafc;
-}
-
-/* =======================================================
-   3. UTILITIES & LAYOUT (WAJIB ADA)
+   UTILITIES & LAYOUT
    ======================================================= */
 .container {
   max-width: 1200px;
@@ -42,7 +50,9 @@ html {
 
 .text-center { text-align: center; }
 .bg-light { background-color: var(--bg-light); }
-section { padding: 80px 0; }
+
+/* PERBAIKAN: section dibuat lebih aman, hanya di main */
+main > section { padding: 80px 0; }
 
 /* Styling Judul Section */
 .section-header { margin-bottom: 50px; }
@@ -58,11 +68,12 @@ section { padding: 80px 0; }
 .section-header h2 { font-size: 2.2rem; color: var(--text-main); margin-bottom: 10px; }
 .heading-line { width: 60px; height: 4px; background: var(--primary); margin: 20px auto; border-radius: 2px; }
 
-/* Styling Tombol (Buttons) */
+/* Styling Tombol */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 12px 28px; border-radius: 12px; font-weight: 600; font-size: 1rem;
   text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none;
+  font-family: inherit;
 }
 .btn-primary { background-color: var(--primary); color: #ffffff; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
 .btn-primary:hover { background-color: var(--primary-dark); transform: translateY(-3px); }
@@ -70,7 +81,7 @@ section { padding: 80px 0; }
 .btn-secondary:hover { background-color: var(--secondary); transform: translateY(-3px); }
 
 /* =======================================================
-   4. NAVBAR STYLING (MENU ATAS)
+   NAVBAR
    ======================================================= */
 .navbar {
   background-color: #ffffff;
@@ -98,7 +109,7 @@ section { padding: 80px 0; }
 .hamburger span { width: 25px; height: 3px; background-color: var(--text-main); border-radius: 5px; }
 
 /* =======================================================
-   5. HERO SECTION (BAGIAN UTAMA)
+   HERO SECTION
    ======================================================= */
 .hero {
   position: relative; padding: 100px 0 160px; overflow: hidden;
@@ -110,9 +121,9 @@ section { padding: 80px 0; }
 .hero-text h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--text-main); }
 .hero-text .highlight { color: var(--primary); }
 .subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
-.hero-buttons { display: flex; gap: 15px; margin-bottom: 40px; }
+.hero-buttons { display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
 
-.hero-stats { display: flex; gap: 30px; }
+.hero-stats { display: flex; gap: 30px; flex-wrap: wrap; }
 .stat { display: flex; align-items: center; gap: 12px; }
 .stat-icon { width: 45px; height: 45px; background: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .stat-info { display: flex; flex-direction: column; }
@@ -120,7 +131,19 @@ section { padding: 80px 0; }
 .stat-label { font-size: 0.85rem; color: var(--text-muted); }
 
 .hero-image { position: relative; flex: 1; display: flex; justify-content: center; }
-.glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); padding: 40px; border-radius: 24px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.08); z-index: 2; width: 300px; }
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 40px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  z-index: 2;
+  width: 300px;
+  max-width: 100%; /* PERBAIKAN: biar tidak overflow */
+}
 .glass-card h3 { margin: 20px 0 5px; font-size: 1.5rem; }
 .progress-bar { width: 100%; height: 8px; background: #e2e8f0; border-radius: 10px; margin-top: 20px; overflow: hidden; }
 .progress-bar .progress { height: 100%; background: var(--primary); border-radius: 10px;}
@@ -133,7 +156,7 @@ section { padding: 80px 0; }
 .custom-shape-divider-bottom .shape-fill { fill: #ffffff; }
 
 /* =======================================================
-   6. FEATURES SECTION (FITUR KOTAK-KOTAK)
+   FEATURES SECTION
    ======================================================= */
 .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
 .feature-card { background: #ffffff; padding: 30px; border-radius: 20px; border: 1px solid #f3f4f6; text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -147,7 +170,7 @@ section { padding: 80px 0; }
 .icon-red { background: #fee2e2; color: #dc2626; }
 
 /* =======================================================
-   7. MATERI SECTION
+   MATERI SECTION
    ======================================================= */
 .materi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 .materi-card { background: #ffffff; border-radius: 20px; border: 1px solid #e5e7eb; position: relative; padding: 40px 30px 30px; transition: all 0.3s ease; }
@@ -159,7 +182,7 @@ section { padding: 80px 0; }
 .materi-link:hover { gap: 15px; }
 
 /* =======================================================
-   8. FOOTER SECTION
+   FOOTER
    ======================================================= */
 .footer { background-color: #1e293b; color: #f8fafc; padding: 60px 0 20px; }
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
@@ -176,27 +199,45 @@ section { padding: 80px 0; }
 .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.9rem; }
 
 /* =======================================================
-   9. RESPONSIVE / HP (MEDIA QUERIES)
+   RESPONSIVE / HP
    ======================================================= */
 @media (max-width: 992px) {
   .hero-content { flex-direction: column; text-align: center; }
   .hero-buttons { justify-content: center; }
-  .hero-stats { justify-content: center; flex-wrap: wrap; }
+  .hero-stats { justify-content: center; }
+  .hero-text h1 { font-size: 2.8rem; }
 }
 
 @media (max-width: 768px) {
-  /* Tampilan Navbar HP */
+  /* Navbar HP */
   .navbar .nav-menu {
     display: none; position: absolute; top: 80px; left: 0; width: 100%;
-    background: #ffffff; flex-direction: column; gap: 0; box-shadow: 0 10px 10px rgba(0,0,0,0.05); padding: 10px 0;
+    background: #ffffff; flex-direction: column; gap: 0;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.05); padding: 10px 0;
   }
-  .navbar .nav-menu.active { display: flex; } /* Dipakai nanti jika tambah JS */
+  .navbar .nav-menu.active { display: flex; }
   .nav-menu li { width: 100%; }
   .nav-menu li a { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; }
   .hamburger { display: flex; }
-  
-  /* Tampilan Hero HP */
+
+  /* Hero HP */
+  .hero { padding: 60px 0 120px; }
   .hero-text h1 { font-size: 2.3rem; }
   .hero-buttons { flex-direction: column; width: 100%; gap: 10px; }
   .hero-buttons .btn { width: 100%; }
+
+  /* PERBAIKAN: kartu kaca biar tidak overflow di HP */
+  .hero-image { width: 100%; margin-top: 30px; }
+  .glass-card { width: 100%; max-width: 320px; padding: 30px 20px; }
+
+  /* Section padding lebih kecil di HP */
+  main > section { padding: 60px 0; }
+  .section-header h2 { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 { font-size: 1.9rem; }
+  .hero-stats { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .glass-card { padding: 25px 15px; }
+  .glass-card h3 { font-size: 1.2rem; }
 }
