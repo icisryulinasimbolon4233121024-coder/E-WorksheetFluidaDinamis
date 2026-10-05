@@ -10,9 +10,525 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* ==========================================
+           KUIS STYLING - PREMIUM DESIGN
+           ========================================== */
+        
+        .kuis-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- INFO CARDS --- */
+        .kuis-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kuis-info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .kuis-info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .kuis-info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .kuis-info-icon.blue {
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+        }
+
+        .kuis-info-icon.green {
+            background: linear-gradient(135deg, #059669, #22d3ee);
+        }
+
+        .kuis-info-icon.orange {
+            background: linear-gradient(135deg, #f59e0b, #ec4899);
+        }
+
+        .kuis-info-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+
+        .kuis-info-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .kuis-info-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* --- PROGRESS BAR --- */
+        .kuis-progress-wrap {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .kuis-progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .kuis-progress-label span:first-child {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kuis-progress-label span:last-child {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .kuis-progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .kuis-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #06b6d4);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+            position: relative;
+        }
+
+        .kuis-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* --- KUIS CONTAINER --- */
+        .kuis-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        /* --- SOAL CARD --- */
+        .soal {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .soal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #2563eb, #06b6d4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .soal:hover {
+            border-color: #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .soal.terjawab {
+            background: #f0f9ff;
+            border-color: #bae6fd;
+        }
+
+        .soal.terjawab::before {
+            opacity: 1;
+        }
+
+        .soal .nomor {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .soal .pertanyaan {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+
+        /* --- OPSI JAWABAN --- */
+        .opsi {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 2px solid #e2e8f0;
+            position: relative;
+        }
+
+        .opsi:last-child {
+            margin-bottom: 0;
+        }
+
+        .opsi:hover {
+            border-color: #93c5fd;
+            background: #eff6ff;
+            transform: translateX(4px);
+        }
+
+        .opsi input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: #2563eb;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .opsi span {
+            font-size: 0.95rem;
+            color: #334155;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Status setelah dikunci */
+        .opsi.dikunci {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .opsi.benar {
+            background: #dcfce7;
+            border-color: #22c55e;
+        }
+
+        .opsi.benar span {
+            color: #166534;
+            font-weight: 600;
+        }
+
+        .opsi.benar::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #22c55e;
+            font-size: 1.1rem;
+        }
+
+        .opsi.salah {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .opsi.salah span {
+            color: #991b1b;
+            font-weight: 600;
+        }
+
+        .opsi.salah::after {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ef4444;
+            font-size: 1.1rem;
+        }
+
+        /* --- ACTION BUTTON --- */
+        .kuis-action {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .kuis-action .btn {
+            padding: 16px 48px;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .kuis-action .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+        }
+
+        /* --- HASIL KUIS --- */
+        .kuis-result {
+            margin-top: 30px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid #e2e8f0;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .kuis-result.hidden {
+            display: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .kuis-result h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .result-score {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .result-score-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .result-detail {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .result-detail-item {
+            text-align: center;
+        }
+
+        .result-detail-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .result-detail-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .result-actions .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .result-actions .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            color: white;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .result-actions .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .result-actions .btn-secondary {
+            background: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .result-actions .btn-secondary:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .kuis-info-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .kuis-info-card {
+                padding: 16px;
+            }
+
+            .kuis-info-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+
+            .kuis-container {
+                padding: 24px 20px;
+            }
+
+            .soal {
+                padding: 20px 18px;
+            }
+
+            .soal .pertanyaan {
+                font-size: 0.95rem;
+            }
+
+            .opsi {
+                padding: 12px 14px;
+            }
+
+            .opsi span {
+                font-size: 0.88rem;
+            }
+
+            .result-score {
+                font-size: 3.5rem;
+            }
+
+            .result-detail {
+                gap: 25px;
+            }
+
+            .result-actions {
+                flex-direction: column;
+            }
+
+            .result-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -52,237 +568,279 @@
     <!-- ===== PAGE CONTENT ===== -->
     <section class="page-content">
         <div class="container">
+            <div class="kuis-wrapper">
 
-            <!-- Info Kuis -->
-            <div class="kuis-info">
-                <div class="kuis-info-item">
-                    <div class="kuis-info-icon blue"><i class="fas fa-list-ol"></i></div>
-                    <div class="kuis-info-text">
-                        <span class="kuis-info-value">10</span>
-                        <span class="kuis-info-label">Total Soal</span>
+                <!-- Info Kuis -->
+                <div class="kuis-info-grid">
+                    <div class="kuis-info-card">
+                        <div class="kuis-info-icon blue"><i class="fas fa-list-ol"></i></div>
+                        <div class="kuis-info-text">
+                            <span class="kuis-info-value">10</span>
+                            <span class="kuis-info-label">Total Soal</span>
+                        </div>
+                    </div>
+                    <div class="kuis-info-card">
+                        <div class="kuis-info-icon green"><i class="fas fa-clock"></i></div>
+                        <div class="kuis-info-text">
+                            <span class="kuis-info-value">15 Menit</span>
+                            <span class="kuis-info-label">Estimasi Waktu</span>
+                        </div>
+                    </div>
+                    <div class="kuis-info-card">
+                        <div class="kuis-info-icon orange"><i class="fas fa-trophy"></i></div>
+                        <div class="kuis-info-text">
+                            <span class="kuis-info-value">75</span>
+                            <span class="kuis-info-label">KKTP Kelulusan</span>
+                        </div>
                     </div>
                 </div>
-                <div class="kuis-info-item">
-                    <div class="kuis-info-icon green"><i class="fas fa-clock"></i></div>
-                    <div class="kuis-info-text">
-                        <span class="kuis-info-value">15 Menit</span>
-                        <span class="kuis-info-label">Estimasi Waktu</span>
+
+                <!-- Progress Bar -->
+                <div class="kuis-progress-wrap">
+                    <div class="kuis-progress-label">
+                        <span><i class="fas fa-tasks"></i> Progres Jawaban</span>
+                        <span id="progressText">0 / 10 soal</span>
+                    </div>
+                    <div class="kuis-progress-bar">
+                        <div class="kuis-progress-fill" id="progressFill"></div>
                     </div>
                 </div>
-                <div class="kuis-info-item">
-                    <div class="kuis-info-icon orange"><i class="fas fa-trophy"></i></div>
-                    <div class="kuis-info-text">
-                        <span class="kuis-info-value">75</span>
-                        <span class="kuis-info-label">KKM Kelulusan</span>
+
+                <!-- Form Kuis -->
+                <form class="kuis-container" id="kuisForm">
+
+                    <!-- Soal 1 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 1</span>
+                        <p class="pertanyaan">Sebuah selang menyemprotkan air. Jika ujung selang dipencet sehingga luas penampangnya menjadi setengah dari ukuran semula, apa yang akan terjadi pada kecepatan aliran air yang keluar?</p>
+                        <label class="opsi">
+                            <input type="radio" name="q1" value="a" required />
+                            <span>Kecepatan air menjadi setengah kali semula</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q1" value="b" />
+                            <span>Kecepatan air tetap sama</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q1" value="c" />
+                            <span>Kecepatan air menjadi dua kali lipat</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q1" value="d" />
+                            <span>Kecepatan air menjadi empat kali lipat</span>
+                        </label>
                     </div>
-                </div>
+
+                    <!-- Soal 2 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 2</span>
+                        <p class="pertanyaan">Air mengalir melalui pipa mendatar yang diameternya menyempit dari 4 cm menjadi 2 cm. Perbandingan kecepatan aliran air pada bagian pipa besar dan bagian pipa kecil adalah...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q2" value="a" required />
+                            <span>1 : 2</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q2" value="b" />
+                            <span>1 : 4</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q2" value="c" />
+                            <span>2 : 1</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q2" value="d" />
+                            <span>4 : 1</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 3 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 3</span>
+                        <p class="pertanyaan">Menurut Asas Bernoulli, pada sebuah pipa mendatar, bagian fluida yang mengalir dengan kecepatan paling tinggi akan memiliki...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q3" value="a" required />
+                            <span>Tekanan paling tinggi</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q3" value="b" />
+                            <span>Tekanan paling rendah</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q3" value="c" />
+                            <span>Massa jenis paling tinggi</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q3" value="d" />
+                            <span>Suhu paling rendah</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 4 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 4</span>
+                        <p class="pertanyaan">Pesawat terbang dapat terangkat ke udara karena desain sayapnya. Syarat agar gaya angkat pesawat bekerja maksimal adalah...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q4" value="a" required />
+                            <span>v<sub>atas</sub> &gt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &gt; P<sub>bawah</sub></span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q4" value="b" />
+                            <span>v<sub>atas</sub> &lt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &lt; P<sub>bawah</sub></span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q4" value="c" />
+                            <span>v<sub>atas</sub> &gt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &lt; P<sub>bawah</sub></span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q4" value="d" />
+                            <span>v<sub>atas</sub> &lt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &gt; P<sub>bawah</sub></span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 5 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 5</span>
+                        <p class="pertanyaan">Sebuah tangki penampung air mengalami kebocoran pada jarak <em>h</em> dari permukaan air. Berdasarkan Teorema Torricelli, kecepatan pancaran air yang keluar dari lubang tersebut sebanding dengan...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q5" value="a" required />
+                            <span>Ketinggian total tangki</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q5" value="b" />
+                            <span>Kuadrat dari kedalaman lubang (h<sup>2</sup>)</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q5" value="c" />
+                            <span>Luas lubang kebocoran</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q5" value="d" />
+                            <span>Akar dari kedalaman lubang (&radic;h)</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 6 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 6</span>
+                        <p class="pertanyaan">Berikut ini yang <strong>bukan</strong> merupakan ciri-ciri fluida ideal sebagai syarat berlakunya Hukum Bernoulli adalah...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q6" value="a" required />
+                            <span>Alirannya stasioner (tunak)</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q6" value="b" />
+                            <span>Kompresibel (volumenya bisa dimampatkan)</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q6" value="c" />
+                            <span>Tidak kental (non-viskos)</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q6" value="d" />
+                            <span>Inkompresibel (massa jenisnya konstan)</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 7 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 7</span>
+                        <p class="pertanyaan">Alat ukur yang prinsip kerjanya mengaplikasikan persamaan Bernoulli untuk mengukur kelajuan aliran gas (udara) di dalam sebuah pipa adalah...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q7" value="a" required />
+                            <span>Barometer</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q7" value="b" />
+                            <span>Hidrometer</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q7" value="c" />
+                            <span>Tabung Pitot</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q7" value="d" />
+                            <span>Venturimeter</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 8 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 8</span>
+                        <p class="pertanyaan">Sebuah penyemprot parfum bekerja dengan ditiupnya udara di ujung atas pipa kecil yang terhubung ke cairan parfum. Udara ditiup dengan cepat agar...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q8" value="a" required />
+                            <span>Tekanan di atas pipa meningkat sehingga parfum terdorong ke bawah</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q8" value="b" />
+                            <span>Tekanan di atas pipa turun, sehingga cairan parfum naik terdorong oleh tekanan udara luar</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q8" value="c" />
+                            <span>Suhu udara menjadi dingin sehingga parfum menguap</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q8" value="d" />
+                            <span>Udara bercampur dengan cairan di dalam botol seketika</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 9 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 9</span>
+                        <p class="pertanyaan">Dua kran air, A dan B, digunakan bergantian untuk mengisi bak mandi. Luas penampang kran A dua kali lebih besar dari kran B. Jika kecepatan aliran air dari kedua kran sama, maka waktu yang dibutuhkan kran A untuk mengisi penuh bak mandi adalah...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q9" value="a" required />
+                            <span>Setengah kali waktu kran B</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q9" value="b" />
+                            <span>Dua kali waktu kran B</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q9" value="c" />
+                            <span>Sama dengan waktu kran B</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q9" value="d" />
+                            <span>Seperempat kali waktu kran B</span>
+                        </label>
+                    </div>
+
+                    <!-- Soal 10 -->
+                    <div class="soal">
+                        <span class="nomor"><i class="fas fa-hashtag"></i> Soal 10</span>
+                        <p class="pertanyaan">Air PDAM dialirkan melalui pipa utama menuju pipa-pipa perumahan yang ukurannya lebih kecil. Jika debit air pada pipa utama adalah <em>Q</em>, maka total debit air pada ujung-ujung pipa perumahan secara keseluruhan adalah...</p>
+                        <label class="opsi">
+                            <input type="radio" name="q10" value="a" required />
+                            <span>Lebih kecil dari Q</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q10" value="b" />
+                            <span>Lebih besar dari Q</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q10" value="c" />
+                            <span>Sama dengan Q</span>
+                        </label>
+                        <label class="opsi">
+                            <input type="radio" name="q10" value="d" />
+                            <span>Bergantung pada panjang total pipa</span>
+                        </label>
+                    </div>
+
+                    <!-- Action -->
+                    <div class="kuis-action">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Kirim Jawaban &amp; Lihat Nilai
+                        </button>
+                    </div>
+
+                    <!-- Hasil Kuis -->
+                    <div id="quizResult" class="kuis-result hidden"></div>
+
+                </form>
             </div>
-
-            <!-- Progress Bar -->
-            <div class="kuis-progress-wrap">
-                <div class="kuis-progress-label">
-                    <span><i class="fas fa-tasks"></i> Progres Jawaban</span>
-                    <span id="progressText">0 / 10 soal</span>
-                </div>
-                <div class="kuis-progress-bar">
-                    <div class="kuis-progress-fill" id="progressFill"></div>
-                </div>
-            </div>
-
-            <!-- Form Kuis -->
-            <form class="kuis-container" id="kuisForm">
-
-                <!-- Soal 1 -->
-                <div class="soal">
-                    <span class="nomor">Soal 1</span>
-                    <p class="pertanyaan">Sebuah selang menyemprotkan air. Jika ujung selang dipencet sehingga luas penampangnya menjadi setengah dari ukuran semula, apa yang akan terjadi pada kecepatan aliran air yang keluar?</p>
-                    <label class="opsi">
-                        <input type="radio" name="q1" value="a" required /> Kecepatan air menjadi setengah kali semula
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q1" value="b" /> Kecepatan air tetap sama
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q1" value="c" /> Kecepatan air menjadi dua kali lipat
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q1" value="d" /> Kecepatan air menjadi empat kali lipat
-                    </label>
-                </div>
-
-                <!-- Soal 2 -->
-                <div class="soal">
-                    <span class="nomor">Soal 2</span>
-                    <p class="pertanyaan">Air mengalir melalui pipa mendatar yang diameternya menyempit dari 4 cm menjadi 2 cm. Perbandingan kecepatan aliran air pada bagian pipa besar dan bagian pipa kecil adalah...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q2" value="a" required /> 1 : 2
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q2" value="b" /> 1 : 4
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q2" value="c" /> 2 : 1
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q2" value="d" /> 4 : 1
-                    </label>
-                </div>
-
-                <!-- Soal 3 -->
-                <div class="soal">
-                    <span class="nomor">Soal 3</span>
-                    <p class="pertanyaan">Menurut Asas Bernoulli, pada sebuah pipa mendatar, bagian fluida yang mengalir dengan kecepatan paling tinggi akan memiliki...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q3" value="a" required /> Tekanan paling tinggi
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q3" value="b" /> Tekanan paling rendah
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q3" value="c" /> Massa jenis paling tinggi
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q3" value="d" /> Suhu paling rendah
-                    </label>
-                </div>
-
-                <!-- Soal 4 -->
-                <div class="soal">
-                    <span class="nomor">Soal 4</span>
-                    <p class="pertanyaan">Pesawat terbang dapat terangkat ke udara karena desain sayapnya. Syarat agar gaya angkat pesawat bekerja maksimal adalah...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q4" value="a" required /> v<sub>atas</sub> &gt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &gt; P<sub>bawah</sub>
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q4" value="b" /> v<sub>atas</sub> &lt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &lt; P<sub>bawah</sub>
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q4" value="c" /> v<sub>atas</sub> &gt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &lt; P<sub>bawah</sub>
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q4" value="d" /> v<sub>atas</sub> &lt; v<sub>bawah</sub> sehingga P<sub>atas</sub> &gt; P<sub>bawah</sub>
-                    </label>
-                </div>
-
-                <!-- Soal 5 -->
-                <div class="soal">
-                    <span class="nomor">Soal 5</span>
-                    <p class="pertanyaan">Sebuah tangki penampung air mengalami kebocoran pada jarak <em>h</em> dari permukaan air. Berdasarkan Teorema Torricelli, kecepatan pancaran air yang keluar dari lubang tersebut sebanding dengan...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q5" value="a" required /> Ketinggian total tangki
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q5" value="b" /> Kuadrat dari kedalaman lubang (h<sup>2</sup>)
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q5" value="c" /> Luas lubang kebocoran
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q5" value="d" /> Akar dari kedalaman lubang (&radic;h)
-                    </label>
-                </div>
-
-                <!-- Soal 6 -->
-                <div class="soal">
-                    <span class="nomor">Soal 6</span>
-                    <p class="pertanyaan">Berikut ini yang <strong>bukan</strong> merupakan ciri-ciri fluida ideal sebagai syarat berlakunya Hukum Bernoulli adalah...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q6" value="a" required /> Alirannya stasioner (tunak)
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q6" value="b" /> Kompresibel (volumenya bisa dimampatkan)
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q6" value="c" /> Tidak kental (non-viskos)
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q6" value="d" /> Inkompresibel (massa jenisnya konstan)
-                    </label>
-                </div>
-
-                <!-- Soal 7 -->
-                <div class="soal">
-                    <span class="nomor">Soal 7</span>
-                    <p class="pertanyaan">Alat ukur yang prinsip kerjanya mengaplikasikan persamaan Bernoulli untuk mengukur kelajuan aliran gas (udara) di dalam sebuah pipa adalah...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q7" value="a" required /> Barometer
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q7" value="b" /> Hidrometer
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q7" value="c" /> Tabung Pitot
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q7" value="d" /> Venturimeter
-                    </label>
-                </div>
-
-                <!-- Soal 8 -->
-                <div class="soal">
-                    <span class="nomor">Soal 8</span>
-                    <p class="pertanyaan">Sebuah penyemprot parfum bekerja dengan ditiupnya udara di ujung atas pipa kecil yang terhubung ke cairan parfum. Udara ditiup dengan cepat agar...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q8" value="a" required /> Tekanan di atas pipa meningkat sehingga parfum terdorong ke bawah
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q8" value="b" /> Tekanan di atas pipa turun, sehingga cairan parfum naik terdorong oleh tekanan udara luar
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q8" value="c" /> Suhu udara menjadi dingin sehingga parfum menguap
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q8" value="d" /> Udara bercampur dengan cairan di dalam botol seketika
-                    </label>
-                </div>
-
-                <!-- Soal 9 -->
-                <div class="soal">
-                    <span class="nomor">Soal 9</span>
-                    <p class="pertanyaan">Dua kran air, A dan B, digunakan bergantian untuk mengisi bak mandi. Luas penampang kran A dua kali lebih besar dari kran B. Jika kecepatan aliran air dari kedua kran sama, maka waktu yang dibutuhkan kran A untuk mengisi penuh bak mandi adalah...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q9" value="a" required /> Setengah kali waktu kran B
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q9" value="b" /> Dua kali waktu kran B
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q9" value="c" /> Sama dengan waktu kran B
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q9" value="d" /> Seperempat kali waktu kran B
-                    </label>
-                </div>
-
-                <!-- Soal 10 -->
-                <div class="soal">
-                    <span class="nomor">Soal 10</span>
-                    <p class="pertanyaan">Air PDAM dialirkan melalui pipa utama menuju pipa-pipa perumahan yang ukurannya lebih kecil. Jika debit air pada pipa utama adalah <em>Q</em>, maka total debit air pada ujung-ujung pipa perumahan secara keseluruhan adalah...</p>
-                    <label class="opsi">
-                        <input type="radio" name="q10" value="a" required /> Lebih kecil dari Q
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q10" value="b" /> Lebih besar dari Q
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q10" value="c" /> Sama dengan Q
-                    </label>
-                    <label class="opsi">
-                        <input type="radio" name="q10" value="d" /> Bergantung pada panjang total pipa
-                    </label>
-                </div>
-
-                <!-- Action -->
-                <div class="kuis-action">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Kirim Jawaban &amp; Lihat Nilai
-                    </button>
-                </div>
-
-                <!-- Hasil Kuis -->
-                <div id="quizResult" class="kuis-result hidden"></div>
-
-            </form>
         </div>
     </section>
 
@@ -319,7 +877,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript Kuis (Inline untuk halaman ini saja) -->
+    <!-- JavaScript Kuis -->
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const kuisForm = document.getElementById('kuisForm');
@@ -413,6 +971,7 @@
                 <div class="result-icon">${statusIcon}</div>
                 <h3 style="color:${statusColor};">${statusText}</h3>
                 <div class="result-score">${nilai}</div>
+                <div class="result-score-label">Nilai Kamu</div>
                 <div class="result-detail">
                     <div class="result-detail-item">
                         <span class="result-detail-value" style="color:#16a34a;">${benar}</span>
@@ -427,7 +986,7 @@
                         <span class="result-detail-label">Total Soal</span>
                     </div>
                 </div>
-                <p style="color:#4b5563; margin:10px 0 0;">Lihat pembahasan jawaban di bawah. Jawaban benar ditandai <span style="color:#16a34a;font-weight:700;">hijau</span>, jawabanmu yang salah ditandai <span style="color:#dc2626;font-weight:700;">merah</span>.</p>
+                <p style="color:#4b5563; margin:10px 0 0; font-size:0.95rem;">Lihat pembahasan jawaban di bawah. Jawaban benar ditandai <span style="color:#16a34a;font-weight:700;">hijau</span>, jawabanmu yang salah ditandai <span style="color:#dc2626;font-weight:700;">merah</span>.</p>
                 <div class="result-actions">
                     <button type="button" class="btn btn-primary" onclick="location.reload()">
                         <i class="fas fa-redo"></i> Ulangi Kuis
